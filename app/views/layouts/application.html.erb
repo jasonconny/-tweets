@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" itemscope itemtype="http://schema.org/art">
+
 <head>
-  <title>Chachitweets</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+
+	<title>Chachi Tweets</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	
+	<meta property="og:title" content="Chachi Tweets" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.chachitweets.com/" />
+	<meta property="og:image" content="http://www.chachitweets.com/apple-touch-icon-72x72-precomposed.png" />
+	<meta property="og:description" content="Words of wisdom from Fonzi's cousin Chachi Arcola." />
+	<meta property="og:locale" content="en_US" />
+
+	<meta itemprop="name" content="Chachi Tweets">
+	<meta itemprop="description" content="Words of wisdom from Fonzi's cousin Chachi Arcola.">
+	<meta itemprop="image" content="http://www.chachitweets.com/apple-touch-icon-114x114-precomposed.png">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= csrf_meta_tags %>
+
 </head>
 <body>
 
 <%= yield %>
+
+	<%= javascript_include_tag "application" %>
+
+	<!--script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-2569982-6']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script-->
 
 </body>
 </html>

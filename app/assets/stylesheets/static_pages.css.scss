@@ -1,0 +1,205 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face { 
+	font-family: 'CooperLtBTBoldItalic';
+	src: url('/assets/cooper_bold_italic_bt-webfont.eot');
+	src: local('☺'), url('/assets/cooper_bold_italic_bt-webfont.woff') format('woff'), url('/assets/cooper_bold_italic_bt-webfont.ttf') format('truetype'), url('/assets/cooper_bold_italic_bt-webfont.svg#webfontxEDKdNPh') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 62.5%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	background-color: #A63726;
+	font-family: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
+}
+
+#chachi {
+	position: absolute;
+	background: #A63726 url(/assets/bg-1760x1100.png) bottom right no-repeat;
+	background-size: contain;
+	bottom: 0;
+	left: 0;
+	display: inline-block;
+	width: 100%;
+	min-width: 320px;
+}
+
+#chachi:after {
+    padding-top: 62.5%;
+    display: block;
+    content: '';
+}
+
+#tweet-bubble {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	max-height: 1100px;
+	max-width: 1760px;
+}
+
+#tweet {
+	width: 50%;
+	color: #444;
+	line-height: 1.1em;
+	text-align: center;
+	margin: 0 0 0 50%;
+	padding: 0 5%;
+	transition: font-size 1s;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#tweeta:link, 
+#tweeta:visited {
+	color: #f37d1e;
+}
+
+#tweeta:hover, 
+#tweeta:active {
+	color: #e36500;
+}
+
+
+/* Media Queries */
+@media all and (min-width: 1701px) {
+	#tweet {
+		font-size: 5em;
+	}
+}
+
+@media all and (max-width: 1700px) {
+	#tweet {
+		font-size: 4.75em;
+	}
+}
+
+@media all and (max-width: 1600px) {
+	#tweet {
+		font-size: 4.5em;
+	}
+}
+
+@media all and (max-width: 1500px) {
+	#tweet {
+		font-size: 4.25em;
+	}
+}
+
+@media all and (max-width: 1400px) {
+	#tweet {
+		font-size: 4em;
+	}
+}
+
+@media all and (max-width: 1300px) {
+	#tweet {
+		font-size: 3.75em;
+	}
+}
+
+@media all and (max-width: 1200px) {
+	#tweet {
+		font-size: 3.5em;
+	}
+}
+
+@media all and (max-width: 1100px) {
+	#tweet {
+		font-size: 3em;
+	}
+}
+
+@media all and (max-width: 1000px) {
+	#tweet {
+		font-size: 2.5em;
+	}
+}
+
+@media all and (max-width: 900px) {
+	#tweet {
+		font-size: 2em;
+	}
+}
+
+@media all and (max-width: 800px) {
+	#tweet {
+		font-size: 1.75em;
+	}
+}
+
+@media all and (max-width: 700px) {
+	#tweet {
+		font-size: 1.5em;
+	}
+}
+
+@media all and (max-width: 600px) {
+	#tweet {
+		font-size: 1.25em;
+	}
+}
+
+@media all and (max-width: 500px) {
+	#tweet {
+		font-size: 1em;
+	}
+}
+
+/* iPhone portrait */
+@media only all and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait),
+only all and (min-width: 320px) and (max-width: 568px) and (orientation: portrait) {
+
+}
+
+/* iPhone landscape */
+@media only all and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape),
+only all and (min-width: 320px) and (max-width: 568px) and (orientation: landscape) {
+
+}
+
+/* mobile retina landscape */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: landscape),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: landscape),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px)	and (orientation: landscape),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: landscape),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px)	and (orientation: landscape),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px)	and (orientation: landscape) {
+ 
+ }
+
+/* mobile retina portrait */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: portrait),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: portrait),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px)	and (orientation: portrait),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px)	and (orientation: portrait),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px)	and (orientation: portrait),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px)	and (orientation: portrait) {
+ 
+ }
+
+/* tablet and desktop retina */
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 569px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 569px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 569px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 569px),
+only screen and (                min-resolution: 192dpi) and (min-width: 569px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 569px) {
+
+}
