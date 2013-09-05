@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'faker', '1.0.1'
+gem "twitter", "~> 4.8.1"
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -36,6 +36,7 @@ group :test do
   gem 'database_cleaner', '0.7.0'
 end
 
+# Change this based on what I have at DreamHost (some flavor of SQL?)
 group :production do
   gem 'pg', '0.12.2'
   gem 'activerecord-postgresql-adapter'
