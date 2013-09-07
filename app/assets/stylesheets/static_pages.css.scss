@@ -24,6 +24,14 @@ body {
 	font-family: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
 }
 
+#test {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	background-color: #FF0;
+}
+
 #chachi {
 	position: absolute;
 	background: #A63726 url(/assets/bg-1760x1100.png) bottom right no-repeat;
