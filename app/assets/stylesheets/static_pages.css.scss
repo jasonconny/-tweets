@@ -24,12 +24,15 @@ body {
 	font-family: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
 }
 
-#test {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
-	background-color: #FF0;
+#test h3 {
+	font-size: 2em;
+	margin: 0 0 1em;
+}
+
+#test ul li {
+	font-size: 1.5em;
+	line-height: 1.2em;
+	margin: 0 0 1.5em;
 }
 
 #chachi {

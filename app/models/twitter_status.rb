@@ -9,10 +9,10 @@ class TwitterStatus
  
   # refresh time
   def default_ttl
-    @default_ttl || 1.hour
+    @default_ttl || 1.minute
   end
  
-  def timeline
+  def tweet
     unless is_fresh?
       reload
     end
