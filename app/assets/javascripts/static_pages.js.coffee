@@ -4,6 +4,7 @@
 
 $bodyEl = $("body")
 $tweetContainer = $("#chachi")
+$tweetBubble = $("#tweet-bubble")
 $tweetContent = $("#tweet")
 
 
@@ -12,26 +13,40 @@ init = () ->
 	hideURLbar()
 
 layout = () ->
-	h = $bodyEl.height()
-	w = $bodyEl.width()
-	r = h / w;
-	if r < .625
-		$tweetContainer.height(h)
-		$tweetContainer.width(h*1.6)
+	bodyHeight = $bodyEl.height()
+	bodyWidth = $bodyEl.width()
+	bodyAspectRatio = bodyHeight / bodyWidth;
+
+	if bodyAspectRatio < .625
+		if bodyHeight > 200
+			$tweetContainer.height(bodyHeight)
+			$tweetContainer.width(bodyHeight * 1.6)
+		else
+			$tweetContainer.height(200)
+			$tweetContainer.width(320)
 	else
 		$tweetContainer.removeAttr('style')
 
-	# if (w <= 500) {
-	# 	$tweetContent.css("font-size", "1em");
-	# } else {
-	#	fs = (((w - 400)/100) * .25) + 1;
-	# 	$tweetContent.css("font-size", fs + "em");
-	# }
+	# set font-size
+	setFontSize()
+	
+	# vertically center text
+	verticallyCenterTweet()
 
-	tH = $tweetContent.height()
-	tCH = $tweetContainer.height()
-	mO = ((tCH * .25) - (tH * .5)) + "px"
-	$tweetContent.css("margin-top", mO)
+setFontSize = () ->
+	currentFontSize = parseInt($tweetContent.css("font-size"), 10)
+	maxFontSize = $tweetContainer.height() / 5.5
+	incrementFontSize(currentFontSize) while $tweetContent.height() < $tweetBubble.height()
+
+incrementFontSize = (currentFontSize) ->
+	currentFontSize++
+	$tweetContent.css('font-size', currentFontSize + "px")
+	$tweetContent.height()
+
+verticallyCenterTweet = () ->
+	paddingOffset = (($tweetContainer.height() * .25) - ($tweetContent.height() * .5)) + "px"
+	$tweetBubble.css("padding-top", paddingOffset)
+
 
 
 hideURLbar = () -> setTimeout(scrollTo, 0, 0, 1)

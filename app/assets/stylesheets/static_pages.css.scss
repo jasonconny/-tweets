@@ -32,6 +32,7 @@ body {
 	left: 0;
 	display: inline-block;
 	width: 100%;
+	min-height: 180px;
 	min-width: 320px;
 }
 
@@ -45,20 +46,23 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0;
-	bottom: 0;
-	left: 0;
+	height: 50%;
+	width: 50%;
 	max-height: 1100px;
 	max-width: 1760px;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #tweet {
-	width: 50%;
+	display: inline-block;
 	color: #444;
 	line-height: 1.1em;
 	text-align: center;
-	margin: 0 0 0 50%;
+	margin: 0 auto;
 	padding: 0 5%;
-	transition: font-size 1s;
+	// width: 100%;
+	// transition: font-size 1s;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
@@ -74,7 +78,7 @@ body {
 }
 
 
-/* Media Queries */
+/* Media Queries 
 @media all and (min-width: 1701px) {
 	#tweet {
 		font-size: 5em;

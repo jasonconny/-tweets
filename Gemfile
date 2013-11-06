@@ -2,17 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'bcrypt-ruby', '3.0.1'
-gem "twitter", "~> 4.8.1"
-
-group :development, :test do
-  gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails', '2.11.0'
-  gem 'guard-rspec', '1.2.1'
-end
-
-group :development do
-  gem 'annotate', '2.5.0'
-end
+gem "twitter", "4.8.1"
+gem "dalli", "2.6.4"
+gem 'sqlite3', '1.3.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,24 +15,6 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
-
-group :test do
-  gem 'capybara', '1.1.2'
-  gem 'rb-fsevent', '0.9.1', :require => false
-  gem 'growl', '1.0.3'
-  gem 'guard-spork', '1.2.0'
-  gem 'childprocess', '0.3.6'
-  gem 'spork', '0.9.2'
-  gem 'factory_girl_rails', '4.1.0'
-  gem 'cucumber-rails', '1.2.1', :require => false
-  gem 'database_cleaner', '0.7.0'
-end
-
-# Change this based on what I have at DreamHost (some flavor of SQL?)
-group :production do
-  gem 'pg', '0.12.2'
-  gem 'activerecord-postgresql-adapter'
-end
 
 
 # To use ActiveModel has_secure_password
