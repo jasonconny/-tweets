@@ -4,6 +4,7 @@ $bodyEl = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble")
 $tweetContainer = $("#tweet");
+$tweetContent = $("#tweet").text();
 
 ChachiTweets.init = function() {
 	ChachiTweets.layout();
@@ -11,9 +12,9 @@ ChachiTweets.init = function() {
 };
 
 ChachiTweets.layout = function() {
-	bodyHeight = $bodyEl.height();
-	bodyWidth = $bodyEl.width();
-	bodyAspectRatio = bodyHeight / bodyWidth;
+	var bodyHeight = $bodyEl.height();
+	var bodyWidth = $bodyEl.width();
+	var bodyAspectRatio = bodyHeight / bodyWidth;
 
 	if (bodyAspectRatio < .625) {
 		if (bodyHeight > 200) {
@@ -32,8 +33,8 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	var currentFontSize = parseInt($tweetContainer.css("font-size"), 10)
-	maxFontSize = $tweetContainer.height() / 5.5
+	var currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
+	var maxFontSize = $tweetContainer.height() / 5.5;
 	do {
 		currentFontSize++;
 		$tweetContainer.css('font-size', currentFontSize + "px");
@@ -42,9 +43,9 @@ ChachiTweets.setFontSize = function() {
 };
 
 ChachiTweets.verticallyCenterTweet = function() {
-	tweetContainerHeight = $tweetContainer.height();
-	chachiHeight = $chachi.height();
-	paddingOffset = ((chachiHeight * .25) - (tweetContainerHeight * .5)) + "px";
+	var tweetContainerHeight = $tweetContainer.height();
+	var chachiHeight = $chachi.height();
+	var paddingOffset = ((chachiHeight * .25) - (tweetContainerHeight * .5)) + "px";
 	$tweetBubble.css("padding-top", paddingOffset);
 };
 
