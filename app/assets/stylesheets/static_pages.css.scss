@@ -60,20 +60,24 @@ body {
 	line-height: 1.1em;
 	text-align: center;
 	margin: 0 auto;
-	padding: 0 10%;
-	// width: 100%;
+	padding: 0 15%;
+	width: 100%;
 	// transition: font-size 1s;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-#tweeta:link, 
-#tweeta:visited {
+#tweet a {
+	white-space: nowrap;
+}
+
+#tweet a:link, 
+#tweet a:visited {
 	color: #f37d1e;
 }
 
-#tweeta:hover, 
-#tweeta:active {
+#tweet a:hover, 
+#tweet a:active {
 	color: #e36500;
 }
 
