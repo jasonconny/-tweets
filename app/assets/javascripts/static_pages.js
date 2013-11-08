@@ -1,5 +1,6 @@
 var ChachiTweets = ChachiTweets || {};
 ChachiTweets.linksAdded = false;
+ChachiTweets.stealthMode = true;
 
 var $bodyEl, $chachi, $tweetBubble, $tweetContainer, $tweetContent;
 
@@ -12,6 +13,10 @@ $tweetContent = $("#tweet").text();
 ChachiTweets.init = function() {
 	if (!$tweetContent) {
 		$tweetContainer.text("Error");
+	}
+
+	if (ChachiTweets.stealthMode) {
+		$bodyEl.addClass('stealth');
 	}
 
 	ChachiTweets.layout();

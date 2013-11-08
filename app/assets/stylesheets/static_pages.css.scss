@@ -26,7 +26,7 @@ body {
 
 #chachi {
 	position: absolute;
-	background: #A63726 url(/assets/bg-1760x1100.png) bottom right no-repeat;
+	background: transparent url(/assets/bg-1760x1100.png) bottom right no-repeat;
 	background-size: contain;
 	bottom: 0;
 	left: 0;
@@ -80,6 +80,17 @@ body {
 #tweet a:active {
 	color: #e36500;
 }
+
+
+/* stealth mode styles, remove before going to prod */
+body.stealth {
+	background-color: #999;
+}
+
+body.stealth #chachi {
+	background-image: url(/assets/bg-stealth-1760x1100.png);
+}
+
 
 
 /* Media Queries 
