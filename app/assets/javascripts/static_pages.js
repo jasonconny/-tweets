@@ -2,13 +2,14 @@ var ChachiTweets = ChachiTweets || {};
 ChachiTweets.linksAdded = false;
 ChachiTweets.stealthMode = true;
 
-var $bodyEl, $chachi, $tweetBubble, $tweetContainer, $tweetContent;
+var $bodyEl, $chachi, $tweetBubble, $tweetContainer, $tweetContent, tweetCharCount;
 
 $bodyEl = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble");
 $tweetContainer = $("#tweet");
 $tweetContent = $("#tweet").text();
+tweetCharCount = $tweetContent.length;
 
 ChachiTweets.init = function() {
 	if (!$tweetContent) {
@@ -24,9 +25,10 @@ ChachiTweets.init = function() {
 };
 
 ChachiTweets.layout = function() {
-	var bodyHeight = $bodyEl.height();
-	var bodyWidth = $bodyEl.width();
-	var bodyAspectRatio = bodyHeight / bodyWidth;
+	var bodyHeight, bodyWidth, bodyAspectRatio;
+	bodyHeight = $bodyEl.height();
+	bodyWidth = $bodyEl.width();
+	bodyAspectRatio = bodyHeight / bodyWidth;
 
 	if (bodyAspectRatio < .625) {
 		if (bodyHeight > 200) {
@@ -48,13 +50,43 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	var currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
-	var maxFontSize = $tweetBubble.height() / 5.5;
-	do {
-		currentFontSize++;
-		$tweetContainer.css('font-size', currentFontSize + "px");
-		$tweetContainer.height();
-	} while ($tweetContainer.height() < $tweetBubble.height() * .7 && currentFontSize <= maxFontSize);
+	var currentFontSize, tweetBubbleHeight, sizeFactor, maxFontSize;
+	currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
+	tweetBubbleHeight = $tweetBubble.height();
+
+	if (tweetCharCount <= 5) {
+		sizeFactor = 3;
+	} else if (tweetCharCount <= 10) {
+		sizeFactor = 4;
+	} else if (tweetCharCount <= 20) {
+		sizeFactor = 5;
+	} else if (tweetCharCount <= 40) {
+		sizeFactor = 6;
+	} else if (tweetCharCount <= 60) {
+		sizeFactor = 7;
+	} else if (tweetCharCount <= 80) {
+		sizeFactor = 8;
+	} else if (tweetCharCount <= 100) {
+		sizeFactor = 9;
+	} else if (tweetCharCount <= 120) {
+		sizeFactor = 10;
+	} else if (tweetCharCount <= 140) {
+		sizeFactor = 11;
+	}
+
+	console.log("sizeFactor: " + sizeFactor);
+
+	maxFontSize = tweetBubbleHeight / sizeFactor;
+	if (currentFontSize <= maxFontSize) {
+		do {
+			currentFontSize++;
+			$tweetContainer.css('font-size', currentFontSize + "px");
+			$tweetContainer.height();
+		} while ($tweetContainer.height() < tweetBubbleHeight * .7 && $tweetContainer.width() < $tweetBubble.width() && currentFontSize <= maxFontSize);
+	} else {
+		$tweetContainer.css('font-size', maxFontSize + "px");
+	}
+
 };
 
 ChachiTweets.addLinks = function() {
@@ -79,14 +111,15 @@ ChachiTweets.addLinks = function() {
 };
 
 ChachiTweets.verticallyCenterTweet = function() {
-	var tweetContainerHeight = $tweetContainer.height();
-	var chachiHeight = $chachi.height();
-	var paddingOffset = ((chachiHeight * .25) - (tweetContainerHeight * .5)) + "px";
-	$tweetBubble.css("padding-top", paddingOffset);
+	var tweetContainerHeight, chachiHeight, marginOffset;
+	tweetContainerHeight = $tweetContainer.height();
+	chachiHeight = $chachi.height();
+	marginOffset = ((chachiHeight * .25) - (tweetContainerHeight * .5)) + "px";
+	$tweetContainer.css("margin-top", marginOffset);
 };
 
 ChachiTweets.hideURLbar = function() {
-    setTimeout(scrollTo, 0, 0, 1);
+	setTimeout(scrollTo, 0, 0, 1);
 };
 
 $(document).ready(function() {
