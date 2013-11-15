@@ -1,8 +1,9 @@
 var ChachiTweets = ChachiTweets || {};
 ChachiTweets.linksAdded = false;
+ChachiTweets.longestSet = false;
 ChachiTweets.stealthMode = true;
 
-var $bodyEl, $chachi, $tweetBubble, $tweetContainer, tweetContent, tweetCharCount;
+var $bodyEl, $chachi, $tweetBubble, $tweetContainer, tweetContent, splitTweet, tweetCharCount;
 
 $bodyEl = $("body");
 $chachi = $("#chachi");
@@ -57,6 +58,19 @@ ChachiTweets.setFontSize = function() {
 	tweetContainerHeight = $tweetContainer.height();
 	maxWordLength = 1;
 
+	if (!ChachiTweets.longestSet) {
+		for (i=0; i < splitTweet.length; i++) {
+			if (maxWordLength < splitTweet[i].length) {
+				maxWordLength = splitTweet[i].length;
+				maxWordIndex = i;
+			}
+		}
+		 longestWord = '<span class="longest">' + splitTweet[maxWordIndex] + '</span>';
+		tweetContent = tweetContent.replace(splitTweet[maxWordIndex], longestWord);
+		$tweetContainer.html(tweetContent);
+		ChachiTweets.longestSet = true;
+	}
+
 	if (tweetCharCount <= 5) {
 		sizeFactor = 3;
 	} else if (tweetCharCount <= 10) {
@@ -78,23 +92,12 @@ ChachiTweets.setFontSize = function() {
 	}
 	maxFontSize = tweetBubbleHeight / sizeFactor;
 
-	for (i=0; i < splitTweet.length; i++) {
-		if (maxWordLength < splitTweet[i].length) {
-			maxWordLength = splitTweet[i].length;
-			maxWordIndex = i;
-		}
-	}
-	 longestWord = '<span class="longest">' + splitTweet[maxWordIndex] + '</span>';
-	tweetContent = tweetContent.replace(splitTweet[maxWordIndex], longestWord);
-
 	if (currentFontSize <= maxFontSize) {
 		do {
 			currentFontSize++;
 			$tweetContainer.css('font-size', currentFontSize + "px");
 			longestWidth = $('.longest').width();
-			console.log(longestWidth);
 			tweetContainerHeight = $tweetContainer.height(); // recalcuate tweetContainer height on each iteration of font sizing
-			console.log(tweetContainerHeight);
 		} while (tweetContainerHeight < tweetBubbleHeight * .7 && longestWidth < $tweetContainer.width() && currentFontSize <= maxFontSize);
 	} else {
 		$tweetContainer.css('font-size', maxFontSize + "px");
