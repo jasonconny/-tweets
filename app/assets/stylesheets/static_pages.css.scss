@@ -68,7 +68,13 @@ body {
 	box-sizing: border-box;
 }
 
+#tweet .longest {
+	display: inline-block;
+	white-space: nowrap;
+}
+
 #tweet a {
+	text-decoration: none;
 	white-space: nowrap;
 }
 

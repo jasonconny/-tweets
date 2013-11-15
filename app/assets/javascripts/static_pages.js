@@ -2,17 +2,18 @@ var ChachiTweets = ChachiTweets || {};
 ChachiTweets.linksAdded = false;
 ChachiTweets.stealthMode = true;
 
-var $bodyEl, $chachi, $tweetBubble, $tweetContainer, $tweetContent, tweetCharCount;
+var $bodyEl, $chachi, $tweetBubble, $tweetContainer, tweetContent, tweetCharCount;
 
 $bodyEl = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble");
 $tweetContainer = $("#tweet");
-$tweetContent = $("#tweet").text();
-tweetCharCount = $tweetContent.length;
+tweetContent = $("#tweet").text();
+splitTweet = tweetContent.split(" ");
+tweetCharCount = tweetContent.length;
 
 ChachiTweets.init = function() {
-	if (!$tweetContent) {
+	if (!tweetContent) {
 		$tweetContainer.text("Error");
 	}
 
@@ -50,9 +51,11 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	var currentFontSize, tweetBubbleHeight, sizeFactor, maxFontSize;
+	var currentFontSize, tweetBubbleHeight, tweetContainerHeight, sizeFactor, maxFontSize, maxWordLength, maxWordIndex, longestWord, longestWidth;
 	currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
 	tweetBubbleHeight = $tweetBubble.height();
+	tweetContainerHeight = $tweetContainer.height();
+	maxWordLength = 1;
 
 	if (tweetCharCount <= 5) {
 		sizeFactor = 3;
@@ -73,16 +76,26 @@ ChachiTweets.setFontSize = function() {
 	} else if (tweetCharCount <= 140) {
 		sizeFactor = 11;
 	}
-
-	console.log("sizeFactor: " + sizeFactor);
-
 	maxFontSize = tweetBubbleHeight / sizeFactor;
+
+	for (i=0; i < splitTweet.length; i++) {
+		if (maxWordLength < splitTweet[i].length) {
+			maxWordLength = splitTweet[i].length;
+			maxWordIndex = i;
+		}
+	}
+	 longestWord = '<span class="longest">' + splitTweet[maxWordIndex] + '</span>';
+	tweetContent = tweetContent.replace(splitTweet[maxWordIndex], longestWord);
+
 	if (currentFontSize <= maxFontSize) {
 		do {
 			currentFontSize++;
 			$tweetContainer.css('font-size', currentFontSize + "px");
-			$tweetContainer.height();
-		} while ($tweetContainer.height() < tweetBubbleHeight * .7 && $tweetContainer.width() < $tweetBubble.width() && currentFontSize <= maxFontSize);
+			longestWidth = $('.longest').width();
+			console.log(longestWidth);
+			tweetContainerHeight = $tweetContainer.height(); // recalcuate tweetContainer height on each iteration of font sizing
+			console.log(tweetContainerHeight);
+		} while (tweetContainerHeight < tweetBubbleHeight * .7 && longestWidth < $tweetContainer.width() && currentFontSize <= maxFontSize);
 	} else {
 		$tweetContainer.css('font-size', maxFontSize + "px");
 	}
@@ -90,21 +103,20 @@ ChachiTweets.setFontSize = function() {
 };
 
 ChachiTweets.addLinks = function() {
-	if ($tweetContent.contains("http") || $tweetContent.contains("#") || $tweetContent.contains("@")) {
-		var splitTweet = $tweetContent.split(' ');
+	if (tweetContent.contains("http") || tweetContent.contains("#") || tweetContent.contains("@")) {
 		for (i=0; i < splitTweet.length; i++) {
 			var el = splitTweet[i];
 			if (el.contains('http')) {
 				var linkedURL = '<a href="' + el + '" target="_blank">' + el + '</a>';
-				$tweetContent = $tweetContent.replace(el, linkedURL);
+				tweetContent = tweetContent.replace(el, linkedURL);
 			} else if (el.contains('#')) {
 				var linkedHashTag = '<a href="https://twitter.com/search?q=%23' + el.substr(1) + '&src=hash" target="_blank">' + el + '</a>';
-				$tweetContent = $tweetContent.replace(el, linkedHashTag);
+				tweetContent = tweetContent.replace(el, linkedHashTag);
 			} else if (el.contains('@')) {
 				var linkedUserName = '<a href="https://twitter.com/' + el.substr(1) + '" target="_blank">' + el + '</a>';
-				$tweetContent = $tweetContent.replace(el, linkedUserName);
+				tweetContent = tweetContent.replace(el, linkedUserName);
 			}
-			$tweetContainer.html($tweetContent);
+			$tweetContainer.html(tweetContent);
 			ChachiTweets.linksAdded = true;
 		}
 	}
