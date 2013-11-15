@@ -98,11 +98,10 @@ ChachiTweets.setFontSize = function() {
 			$tweetContainer.css('font-size', currentFontSize + "px");
 			longestWidth = $('.longest').width();
 			tweetContainerHeight = $tweetContainer.height(); // recalcuate tweetContainer height on each iteration of font sizing
-		} while (tweetContainerHeight < tweetBubbleHeight * .7 && longestWidth < $tweetContainer.width() && currentFontSize <= maxFontSize);
+		} while (tweetContainerHeight < tweetBubbleHeight * .58 && longestWidth < $tweetContainer.width() && currentFontSize <= maxFontSize);
 	} else {
 		$tweetContainer.css('font-size', maxFontSize + "px");
 	}
-
 };
 
 ChachiTweets.addLinks = function() {
