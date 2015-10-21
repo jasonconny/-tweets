@@ -1,43 +1,40 @@
 var ChachiTweets = ChachiTweets || {};
+
 ChachiTweets.linksAdded = false;
 ChachiTweets.longestSet = false;
-ChachiTweets.stealthMode = false;
+ChachiTweets.stealthMode = true;
 
-var $bodyEl, $chachi, $tweetBubble, $tweetContainer, tweetContent, splitTweet, tweetCharCount;
+var $bodyEl, $chachi, $tweetBubble, $tweetContainer;
 
 $bodyEl = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble");
 $tweetContainer = $("#tweet");
-tweetContent = $tweetContainer.text();
-splitTweet = tweetContent.split(" ");
-tweetCharCount = tweetContent.length;
 
 ChachiTweets.init = function() {
-	if (!tweetContent) {
-		$tweetContainer.text("Error");
-	}
 
 	if (ChachiTweets.stealthMode) {
 		$bodyEl.addClass('stealth');
 	}
 
 	ChachiTweets.getTweet();
-	ChachiTweets.layout();
-	ChachiTweets.hideURLbar();	
+	ChachiTweets.hideURLbar();
+
 };
 
 ChachiTweets.getTweet =function() {
-	console.log('get tweet');
 	$.ajax({
 		url: 'get_tweets.php',
 		type: 'GET',
 		success: function(response) {
-
 			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+				$tweetContainer.text(response[0].text);
 
-				console.log(response[0].text);
+				ChachiTweets.tweetContent = $tweetContainer.text();
+				ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ");
+				ChachiTweets.tweetCharCount = ChachiTweets.tweetContent.length;
 
+				ChachiTweets.layout();
 			} else {
 				console.log('error: ' + errors);
 			}
@@ -67,6 +64,7 @@ ChachiTweets.layout = function() {
 	}
 
 	ChachiTweets.setFontSize();
+
 	if (!ChachiTweets.linksAdded) {
 		ChachiTweets.addLinks();
 	}
@@ -80,35 +78,35 @@ ChachiTweets.setFontSize = function() {
 	maxWordLength = 1;
 
 	if (!ChachiTweets.longestSet) {
-		for (i=0; i < splitTweet.length; i++) {
-			if (maxWordLength < splitTweet[i].length) {
-				maxWordLength = splitTweet[i].length;
+		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
+			if (maxWordLength < ChachiTweets.splitTweet[i].length) {
+				maxWordLength = ChachiTweets.splitTweet[i].length;
 				maxWordIndex = i;
 			}
 		}
-		 longestWord = '<span class="longest">' + splitTweet[maxWordIndex] + '</span>';
-		tweetContent = tweetContent.replace(splitTweet[maxWordIndex], longestWord);
-		$tweetContainer.html(tweetContent);
+		longestWord = '<span class="longest">' + ChachiTweets.splitTweet[maxWordIndex] + '</span>';
+		ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(ChachiTweets.splitTweet[maxWordIndex], longestWord);
+		$tweetContainer.html(ChachiTweets.tweetContent);
 		ChachiTweets.longestSet = true;
 	}
 
-	if (tweetCharCount <= 5) {
+	if (ChachiTweets.tweetCharCount <= 5) {
 		sizeFactor = 3;
-	} else if (tweetCharCount <= 10) {
+	} else if (ChachiTweets.tweetCharCount <= 10) {
 		sizeFactor = 4;
-	} else if (tweetCharCount <= 20) {
+	} else if (ChachiTweets.tweetCharCount <= 20) {
 		sizeFactor = 5;
-	} else if (tweetCharCount <= 40) {
+	} else if (ChachiTweets.tweetCharCount <= 40) {
 		sizeFactor = 6;
-	} else if (tweetCharCount <= 60) {
+	} else if (ChachiTweets.tweetCharCount <= 60) {
 		sizeFactor = 7;
-	} else if (tweetCharCount <= 80) {
+	} else if (ChachiTweets.tweetCharCount <= 80) {
 		sizeFactor = 8;
-	} else if (tweetCharCount <= 100) {
+	} else if (ChachiTweets.tweetCharCount <= 100) {
 		sizeFactor = 9;
-	} else if (tweetCharCount <= 120) {
+	} else if (ChachiTweets.tweetCharCount <= 120) {
 		sizeFactor = 10;
-	} else if (tweetCharCount <= 140) {
+	} else if (ChachiTweets.tweetCharCount <= 140) {
 		sizeFactor = 11;
 	}
 	maxFontSize = tweetBubbleHeight / sizeFactor;
@@ -127,20 +125,20 @@ ChachiTweets.setFontSize = function() {
 };
 
 ChachiTweets.addLinks = function() {
-	if (tweetContent.includes("http") || tweetContent.includes("#") || tweetContent.includes("@")) {
-		for (i=0; i < splitTweet.length; i++) {
-			var el = splitTweet[i];
-			if (el.includes('http')) {
+	if (ChachiTweets.tweetContent.includes("http") || ChachiTweets.tweetContent.includes("#") || ChachiTweets.tweetContent.includes("@")) {
+		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
+			var el = ChachiTweets.splitTweet[i];
+			if (el.indexOf('http') === 0) {
 				var linkedURL = '<a href="' + el + '" target="_blank">' + el + '</a>';
-				tweetContent = tweetContent.replace(el, linkedURL);
-			} else if (el.includes('#')) {
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedURL);
+			} else if (el.indexOf('#') === 0) {
 				var linkedHashTag = '<a href="https://twitter.com/search?q=%23' + el.substr(1) + '&src=hash" target="_blank">' + el + '</a>';
-				tweetContent = tweetContent.replace(el, linkedHashTag);
-			} else if (el.includes('@')) {
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedHashTag);
+			} else if (el.indexOf('@') === 0) {
 				var linkedUserName = '<a href="https://twitter.com/' + el.substr(1) + '" target="_blank">' + el + '</a>';
-				tweetContent = tweetContent.replace(el, linkedUserName);
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedUserName);
 			}
-			$tweetContainer.html(tweetContent);
+			$tweetContainer.html(ChachiTweets.tweetContent);
 			ChachiTweets.linksAdded = true;
 		}
 	}
