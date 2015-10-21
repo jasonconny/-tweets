@@ -7,8 +7,10 @@ $oauth_access_token = '59233414-VWvoWpqMxTPwALLKg79AeDobIcuxaJfcCV44Fkkgl';
 $oauth_access_token_secret = '0PUnV20BSWxpeeyqt3mE3Jihdfzun5v5BF3M4JA4Q';
 $consumer_key = 'NBQOO8QN1y5Af9epM9qs2w';
 $consumer_secret = 'rOB8HOdt03jVEKtGzwVINCMzsHRNVXD5fx0PFRHhc4';
-$user_id = '59233414';
-$screen_name = 'jasonconny';
+//$user_id = '59233414';
+//$screen_name = 'jasonconny';
+$user_id = '82447359';
+$screen_name = 'scottbaio';
 $count = 1;
 
 $twitter_url = 'statuses/user_timeline.json';
