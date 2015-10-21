@@ -22,8 +22,30 @@ ChachiTweets.init = function() {
 		$bodyEl.addClass('stealth');
 	}
 
+	ChachiTweets.getTweet();
 	ChachiTweets.layout();
 	ChachiTweets.hideURLbar();	
+};
+
+ChachiTweets.getTweet =function() {
+	console.log('get tweet');
+	$.ajax({
+		url: 'get_tweets.php',
+		type: 'GET',
+		success: function(response) {
+
+			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
+
+				console.log(response[0].text);
+
+			} else {
+				console.log('error: ' + errors);
+			}
+		},
+		error: function(errors) {
+			console.log('error: ' + errors);
+		}
+	});
 };
 
 ChachiTweets.layout = function() {
