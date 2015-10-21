@@ -19,10 +19,11 @@ ChachiTweets.init = function() {
 
 	ChachiTweets.getTweet();
 	ChachiTweets.hideURLbar();
+	ChachiTweets.updateTweet();
 
 };
 
-ChachiTweets.getTweet =function() {
+ChachiTweets.getTweet = function() {
 	$.ajax({
 		url: 'get_tweets.php',
 		type: 'GET',
@@ -43,6 +44,15 @@ ChachiTweets.getTweet =function() {
 			console.log('error: ' + errors);
 		}
 	});
+};
+
+ChachiTweets.updateTweet = function() {
+	window.setTimeout(function() {
+		ChachiTweets.linksAdded = false;
+		ChachiTweets.longestSet = false;
+		ChachiTweets.getTweet();
+		ChachiTweets.updateTweet();
+	}, 60000);
 };
 
 ChachiTweets.layout = function() {
