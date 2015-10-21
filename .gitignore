@@ -20,3 +20,6 @@ doc*.swp
 .project
 .DS_Store
 .idea
+app/views/static_pages/home.html.erb
+
+Gemfile.lock
