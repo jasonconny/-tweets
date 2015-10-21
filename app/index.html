@@ -23,15 +23,17 @@
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= csrf_meta_tags %>
 
 </head>
 <body>
 
-<%= yield %>
-
-	<%= javascript_include_tag "application" %>
+	<div id="chachi">
+		<div id="tweet-bubble">
+			<span id="tweet"></span>
+	<!-- 		<span id="tweet">Let my inspiration flow, in token lines suggesting rhythm that will not forsake me till my tale is told and done. #TerrapinStation</span>
+	 -->	</div>
+	</div>
+	<!-- Let my inspiration flow, in token lines suggesting rhythm that will not forsake me till my tale is told and done. #TerrapinStation -->
 
 	<!--script type="text/javascript">
 		var _gaq = _gaq || [];
