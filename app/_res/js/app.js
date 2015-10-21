@@ -9,7 +9,7 @@ $bodyEl = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble");
 $tweetContainer = $("#tweet");
-tweetContent = $("#tweet").text();
+tweetContent = $tweetContainer.text();
 splitTweet = tweetContent.split(" ");
 tweetCharCount = tweetContent.length;
 
