@@ -8,11 +8,147 @@
   font-style: normal;
 }
 
-/* VARIABLES */
+//* VARIABLES
 $bgColor: #A63726;
 $linkColor: #f37d1e;
 $linkHover: #e36500;
 $fontStack: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
+$masterPrefix: -webkit- -ms- -moz- -o- null;
+$basicPrefix: -webkit- -moz- null;
+
+//* MISC MIXINS
+@mixin box-sizing($var) {
+  -webkit-box-sizing:$var;
+  -moz-box-sizing:$var;
+  box-sizing:$var;
+}
+
+
+//* FLEXBOX
+@mixin flex($grow:null,$shrink:null,$width:null) {
+  @if $grow != null {
+    @if $width != null {
+      -webkit-box-flex:$grow;
+      width:$width;
+      -moz-box-flex:$grow $shrink $width;
+      -ms-flex:$grow $shrink $width;
+      -webkit-flex:$grow $shrink $width;
+      flex:$grow $shrink $width;
+    } @else {
+      -webkit-box-flex:$grow;
+      -moz-box-flex:$grow $shrink;
+      -ms-flex:$grow $shrink;
+      -webkit-flex:$grow $shrink;
+      flex:$grow $shrink;
+    }
+  } @else {
+    display:-webkit-box;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+  }
+}
+
+@mixin flex-align-content($var) {
+  -webkit-align-content:$var;
+  -moz-align-content:$var;
+  align-content:$var;
+}
+
+@mixin flex-align-items($var) {
+  @if $var == "flex-end" {
+    -webkit-box-align:end;
+    -ms-flex-align:end;
+    @each $pfx in $basicPrefix {
+      #{$pfx}align-items:$var;
+    }
+  } @else if $var == "flex-start" {
+    -webkit-box-align:start;
+    -ms-flex-align:start;
+    @each $pfx in $basicPrefix {
+      #{$pfx}align-items:$var;
+    }
+  } @else {
+    -webkit-box-align:$var;
+    -ms-flex-align:$var;
+    @each $pfx in $basicPrefix {
+      #{$pfx}align-items:$var;
+    }
+  }
+}
+
+@mixin flex-align-self($var) {
+  -webkit-align-self:$var;
+  align-self:$var;
+}
+
+@mixin flex-direction($var) {
+  $orient: -webkit- -moz-;
+  $box: -webkit- -moz-;
+  $flex: -webkit- -ms- -moz- -o-;
+
+  @each $pfx in $box {
+    #{$pfx}box-direction:normal;
+  }
+  @if $var == "column" {
+    @each $pfx in $orient {
+      #{$pfx}box-orient:vertical;
+    }
+    @each $pfx in $masterPrefix {
+      #{$pfx}flex-direction:$var;
+    }
+  } @else if $var == "row" {
+    @each $pfx in $orient {
+      #{$pfx}box-orient:horizontal;
+    }
+    @each $pfx in $masterPrefix {
+      #{$pfx}flex-direction:$var;
+    }
+  }
+}
+
+@mixin flex-justify-content($var) {
+  @if $var == "flex-start" {
+    -webkit-box-pack:start;
+    -ms-flex-pack:start;
+    @each $pfx in $basicPrefix {
+      #{$pfx}justify-content:$var;
+    }
+  } @else if $var == "flex-end" {
+    -webkit-box-pack:end;
+    -ms-flex-pack:end;
+    @each $pfx in $basicPrefix {
+      #{$pfx}justify-content:$var;
+    }
+  } @else if $var == "space-between" {
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+    @each $pfx in $basicPrefix {
+      #{$pfx}justify-content:$var;
+    }
+  } @else {
+    -webkit-box-pack:$var;
+    -ms-flex-pack:$var;
+    @each $pfx in $basicPrefix {
+      #{$pfx}justify-content:$var;
+    }
+  }
+}
+
+@mixin flex-order($var) {
+  -webkit-box-ordinal-group:$var;
+  -moz-box-ordinal-group:$var;
+  -ms-flex-order:$var;
+  -webkit-order:$var;
+  order:$var;
+}
+
+@mixin flex-wrap($var) {
+  -webkit-flex-wrap:$var;
+  -ms-flex-wrap:$var;
+  flex-wrap:$var;
+}
 
 
 body,
@@ -62,8 +198,9 @@ body {
   max-height: 1100px;
   max-width: 1760px;
   padding: 0 5%;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include flex();
+  @include flex-align-items(center);
+  @include box-sizing(border-box);
 }
 
 #tweet {
@@ -75,8 +212,7 @@ body {
   // padding: 0 16%;
   width: 100%;
   // transition: font-size 1s;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
   a {
     text-decoration: none;
     white-space: nowrap;

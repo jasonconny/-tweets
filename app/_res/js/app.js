@@ -48,7 +48,6 @@ ChachiTweets.layout = function() {
 	if (!ChachiTweets.linksAdded) {
 		ChachiTweets.addLinks();
 	}
-	ChachiTweets.verticallyCenterTweet();
 };
 
 ChachiTweets.setFontSize = function() {
@@ -123,14 +122,6 @@ ChachiTweets.addLinks = function() {
 			ChachiTweets.linksAdded = true;
 		}
 	}
-};
-
-ChachiTweets.verticallyCenterTweet = function() {
-	var tweetContainerHeight, chachiHeight, marginOffset;
-	tweetContainerHeight = $tweetContainer.height();
-	chachiHeight = $chachi.height();
-	marginOffset = ((chachiHeight * .25) - (tweetContainerHeight * .5)) + "px";
-	$tweetContainer.css("margin-top", marginOffset);
 };
 
 ChachiTweets.hideURLbar = function() {
