@@ -1,7 +1,7 @@
 var ChachiTweets = ChachiTweets || {};
 ChachiTweets.linksAdded = false;
 ChachiTweets.longestSet = false;
-ChachiTweets.stealthMode = true;
+ChachiTweets.stealthMode = false;
 
 var $bodyEl, $chachi, $tweetBubble, $tweetContainer, tweetContent, splitTweet, tweetCharCount;
 
@@ -106,16 +106,16 @@ ChachiTweets.setFontSize = function() {
 };
 
 ChachiTweets.addLinks = function() {
-	if (tweetContent.contains("http") || tweetContent.contains("#") || tweetContent.contains("@")) {
+	if (tweetContent.includes("http") || tweetContent.includes("#") || tweetContent.includes("@")) {
 		for (i=0; i < splitTweet.length; i++) {
 			var el = splitTweet[i];
-			if (el.contains('http')) {
+			if (el.includes('http')) {
 				var linkedURL = '<a href="' + el + '" target="_blank">' + el + '</a>';
 				tweetContent = tweetContent.replace(el, linkedURL);
-			} else if (el.contains('#')) {
+			} else if (el.includes('#')) {
 				var linkedHashTag = '<a href="https://twitter.com/search?q=%23' + el.substr(1) + '&src=hash" target="_blank">' + el + '</a>';
 				tweetContent = tweetContent.replace(el, linkedHashTag);
-			} else if (el.contains('@')) {
+			} else if (el.includes('@')) {
 				var linkedUserName = '<a href="https://twitter.com/' + el.substr(1) + '" target="_blank">' + el + '</a>';
 				tweetContent = tweetContent.replace(el, linkedUserName);
 			}
