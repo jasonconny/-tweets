@@ -8,7 +8,15 @@
   font-style: normal;
 }
 
-body, html {
+/* VARIABLES */
+$bgColor: #A63726;
+$linkColor: #f37d1e;
+$linkHover: #e36500;
+$fontStack: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
+
+
+body,
+html {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -19,8 +27,13 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  background-color: #A63726;
-  font-family: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
+  background-color: $bgColor;
+  font-family: $fontStack;
+  &.stealth {
+    background-color: #999;
+    #chachi {
+      background-image: url(../img/bg-stealth-1760x1100.png);
+    }  }
 }
 
 #chachi {
@@ -33,12 +46,11 @@ body {
   width: 100%;
   min-height: 180px;
   min-width: 320px;
-}
-
-#chachi:after {
-  padding-top: 62.5%;
-  display: block;
-  content: '';
+  &:after {
+    padding-top: 62.5%;
+    display: block;
+    content: '';
+  }
 }
 
 #tweet-bubble {
@@ -65,36 +77,22 @@ body {
   // transition: font-size 1s;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-#tweet .longest {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-#tweet a {
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-#tweet a:link,
-#tweet a:visited {
-  color: #f37d1e;
-}
-
-#tweet a:hover,
-#tweet a:active {
-  color: #e36500;
-}
-
-
-/* stealth mode styles, remove before going to prod */
-body.stealth {
-  background-color: #999;
-}
-
-body.stealth #chachi {
-  background-image: url(../img/bg-stealth-1760x1100.png);
+  a {
+    text-decoration: none;
+    white-space: nowrap;
+    &:link,
+    &:visited {
+      color: $linkColor;
+    }
+    &:hover,
+    &:active {
+      color: $linkHover
+    }
+  }
+  .longest {
+    display: inline-block;
+    white-space: nowrap;
+  }
 }
 
 
