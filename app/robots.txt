@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: get_tweets.php
+Disallow: twitter_proxy.php
