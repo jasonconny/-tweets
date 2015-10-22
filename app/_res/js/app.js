@@ -29,13 +29,14 @@ ChachiTweets.getTweet = function() {
 		type: 'GET',
 		success: function(response) {
 			if (typeof response.errors === 'undefined' || response.errors.length < 1) {
-				$tweetContainer.text(response[0].text);
+				if(response[0].text != ChachiTweets.rawTweet) {
+					ChachiTweets.rawTweet = response[0].text;
+					ChachiTweets.tweetContent = ChachiTweets.rawTweet;
+					ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ");
+					ChachiTweets.tweetCharCount = ChachiTweets.tweetContent.length;
 
-				ChachiTweets.tweetContent = $tweetContainer.text();
-				ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ");
-				ChachiTweets.tweetCharCount = ChachiTweets.tweetContent.length;
-
-				ChachiTweets.layout();
+					ChachiTweets.layout();
+				}
 			} else {
 				console.log('error: ' + errors);
 			}
@@ -56,6 +57,7 @@ ChachiTweets.updateTweet = function() {
 };
 
 ChachiTweets.layout = function() {
+
 	var bodyHeight, bodyWidth, bodyAspectRatio;
 	bodyHeight = $bodyEl.height();
 	bodyWidth = $bodyEl.width();
