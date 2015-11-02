@@ -170,7 +170,14 @@ body {
     background-color: #999;
     #chachi {
       background-image: url(../img/bg-stealth-1760x1100.png);
-    }  }
+    }
+    #tweet-bubble {
+      background-color: rgba(127,127,126,.5);
+    }
+    #tweet {
+      background-color: magenta;
+    }
+  }
 }
 
 #chachi {
@@ -200,7 +207,7 @@ body {
   width: 50%;
   max-height: 1100px;
   max-width: 1760px;
-  padding: 0 5%;
+  padding: 6%;
   @include flex();
   @include flex-align-items(center);
   @include box-sizing(border-box);

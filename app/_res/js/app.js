@@ -75,7 +75,19 @@ ChachiTweets.layout = function() {
 		$chachi.removeAttr('style');
 	}
 
-	ChachiTweets.setFontSize();
+	//ChachiTweets.setFontSize();
+
+	$tweetContainer.html(ChachiTweets.tweetContent);
+
+	$tweetBubble.textfill({
+		maxFontPixel: 0,
+		success: function() {
+			console.log("success")
+		},
+		fail: function() {
+			console.log("fail")
+		}
+	});
 
 	if (!ChachiTweets.linksAdded) {
 		ChachiTweets.addLinks();
