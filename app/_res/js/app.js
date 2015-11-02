@@ -65,7 +65,7 @@ ChachiTweets.layout = function() {
 
 	if (bodyAspectRatio < .625) {
 		if (bodyHeight > 200) {
-			$chachi.height(bodyHeight);
+			$chachi.height(bodyHeight * .95);
 			$chachi.width(bodyHeight * 1.6);
 		} else {
 			$chachi.height(200);
