@@ -208,14 +208,9 @@ body {
   max-height: 1100px;
   max-width: 1760px;
   padding: 6%;
-  @include box-sizing(border-box);
-}
-
-#tweet-container {
-  height: 100%;
-  width: 100%;
   @include flex();
   @include flex-align-items(center);
+  @include box-sizing(border-box);
 }
 
 #tweet {
