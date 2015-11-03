@@ -4,12 +4,12 @@ ChachiTweets.linksAdded = false;
 ChachiTweets.longestSet = false;
 ChachiTweets.stealthMode = true;
 
-var $body, $chachi, $tweetBubble, $tweetContainer;
+var $body, $chachi, $tweetContainer, $tweet;
 
 $body = $("body");
 $chachi = $("#chachi");
-$tweetBubble = $("#tweet-bubble");
-$tweetContainer = $("#tweet");
+$tweetContainer = $("#tweet-container");
+$tweet = $("#tweet");
 
 ChachiTweets.init = function() {
 
@@ -84,21 +84,9 @@ ChachiTweets.layout = function() {
 	}
 */
 
-	//ChachiTweets.setFontSize();
+	ChachiTweets.setFontSize();
 
-	//$tweetContainer.html(ChachiTweets.tweetContent);
-
-/*
-	$tweetBubble.textfill({
-		maxFontPixel: 0,
-		success: function() {
-			console.log("success")
-		},
-		fail: function() {
-			console.log("fail")
-		}
-	});
-*/
+	//$tweet.html(ChachiTweets.tweetContent);
 
 	//if (!ChachiTweets.linksAdded) {
 	//	ChachiTweets.addLinks();
@@ -106,45 +94,17 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	var currentFontSize, tweetBubbleHeight, tweetContainerHeight, sizeFactor, maxFontSize, longestWidth;
-	currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
-	tweetBubbleHeight = $tweetBubble.height();
-	tweetContainerHeight = $tweetContainer.height();
-
-	ChachiTweets.setLongestWord();
-
-	if (ChachiTweets.tweetCharCount <= 5) {
-		sizeFactor = 3;
-	} else if (ChachiTweets.tweetCharCount <= 10) {
-		sizeFactor = 4;
-	} else if (ChachiTweets.tweetCharCount <= 20) {
-		sizeFactor = 5;
-	} else if (ChachiTweets.tweetCharCount <= 40) {
-		sizeFactor = 6;
-	} else if (ChachiTweets.tweetCharCount <= 60) {
-		sizeFactor = 7;
-	} else if (ChachiTweets.tweetCharCount <= 80) {
-		sizeFactor = 8;
-	} else if (ChachiTweets.tweetCharCount <= 100) {
-		sizeFactor = 9;
-	} else if (ChachiTweets.tweetCharCount <= 120) {
-		sizeFactor = 10;
-	} else if (ChachiTweets.tweetCharCount <= 140) {
-		sizeFactor = 11;
-	}
-	maxFontSize = tweetBubbleHeight / sizeFactor;
-
-	if (currentFontSize <= maxFontSize) {
-		do {
-			currentFontSize++;
-			$tweetContainer.css('font-size', currentFontSize + "px");
-			longestWidth = $('.longest').width();
-			tweetContainerHeight = $tweetContainer.height(); // recalcuate tweetContainer height on each iteration of font sizing
-		} while (tweetContainerHeight < tweetBubbleHeight * .7 && longestWidth < $tweetContainer.width() && currentFontSize <= maxFontSize);
-	} else {
-		$tweetContainer.css('font-size', maxFontSize + "px");
-	}
-
+	$tweetContainer.textfill({
+		maxFontPixels: 150,
+		explicitWidth: $body.width(), // no idea why passing this in stops it from failing
+		//debug: true,
+		success: function() {
+			console.log("success: " + $body.width());
+		},
+		fail: function() {
+			console.log("fail: " + $body.width());
+		}
+	});
 };
 
 ChachiTweets.addLinks = function() {
@@ -161,7 +121,7 @@ ChachiTweets.addLinks = function() {
 				var linkedUserName = '<a href="https://twitter.com/' + el.substr(1) + '" target="_blank">' + el + '</a>';
 				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedUserName);
 			}
-			$tweetContainer.html(ChachiTweets.tweetContent);
+			$tweet.html(ChachiTweets.tweetContent);
 			ChachiTweets.linksAdded = true;
 		}
 	}
@@ -181,7 +141,7 @@ ChachiTweets.setLongestWord = function() {
 		}
 		longestWord = '<span class="longest">' + ChachiTweets.splitTweet[maxWordIndex] + '</span>';
 		ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(ChachiTweets.splitTweet[maxWordIndex], longestWord);
-		$tweetContainer.html(ChachiTweets.tweetContent);
+		$tweet.html(ChachiTweets.tweetContent);
 		ChachiTweets.longestSet = true;
 	}
 };

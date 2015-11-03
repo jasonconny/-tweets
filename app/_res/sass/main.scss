@@ -171,7 +171,7 @@ body {
     #chachi {
       background-image: url(../img/bg-stealth-1760x1100.png);
     }
-    #tweet-bubble {
+    #tweet-container {
       background-color: rgba(127,127,126,.5);
     }
     #tweet {
@@ -208,18 +208,20 @@ body {
   max-height: 1100px;
   max-width: 1760px;
   padding: 6%;
-  @include flex();
-  @include flex-align-items(center);
   @include box-sizing(border-box);
 }
 
+#tweet-container {
+  height: 100%;
+  width: 100%;
+  @include flex();
+  @include flex-align-items(center);
+}
+
 #tweet {
-  display: inline-block;
   color: #444;
-  line-height: 1.1em;
   text-align: center;
   margin: 0 auto;
-  // padding: 0 16%;
   width: 100%;
   // transition: font-size 1s;
   @include box-sizing(border-box);
