@@ -17,7 +17,7 @@ ChachiTweets.init = function() {
 		$body.addClass('stealth');
 	}
 
-	ChachiTweets.getTweet();
+	//ChachiTweets.getTweet();
 	ChachiTweets.layout();
 	//ChachiTweets.hideURLbar();
 	//ChachiTweets.updateTweet();
@@ -61,7 +61,7 @@ ChachiTweets.layout = function() {
 	bodyHeight = $body.height();
 	bodyWidth = $body.width();
 	bodyAspectRatio = bodyHeight / bodyWidth;
-	
+
 	if (bodyAspectRatio > 1) {
 		$body.addClass('portrait');
 		$body.removeClass('landscape');
@@ -106,24 +106,12 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	var currentFontSize, tweetBubbleHeight, tweetContainerHeight, sizeFactor, maxFontSize, maxWordLength, maxWordIndex, longestWord, longestWidth;
+	var currentFontSize, tweetBubbleHeight, tweetContainerHeight, sizeFactor, maxFontSize, longestWidth;
 	currentFontSize = parseInt($tweetContainer.css("font-size"), 10);
 	tweetBubbleHeight = $tweetBubble.height();
 	tweetContainerHeight = $tweetContainer.height();
-	maxWordLength = 1;
 
-	if (!ChachiTweets.longestSet) {
-		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
-			if (maxWordLength < ChachiTweets.splitTweet[i].length) {
-				maxWordLength = ChachiTweets.splitTweet[i].length;
-				maxWordIndex = i;
-			}
-		}
-		longestWord = '<span class="longest">' + ChachiTweets.splitTweet[maxWordIndex] + '</span>';
-		ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(ChachiTweets.splitTweet[maxWordIndex], longestWord);
-		$tweetContainer.html(ChachiTweets.tweetContent);
-		ChachiTweets.longestSet = true;
-	}
+	ChachiTweets.setLongestWord();
 
 	if (ChachiTweets.tweetCharCount <= 5) {
 		sizeFactor = 3;
@@ -176,6 +164,25 @@ ChachiTweets.addLinks = function() {
 			$tweetContainer.html(ChachiTweets.tweetContent);
 			ChachiTweets.linksAdded = true;
 		}
+	}
+};
+
+ChachiTweets.setLongestWord = function() {
+	var maxWordLength = 1,
+		maxWordIndex,
+		longestWord;
+
+	if (!ChachiTweets.longestSet) {
+		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
+			if (maxWordLength < ChachiTweets.splitTweet[i].length) {
+				maxWordLength = ChachiTweets.splitTweet[i].length;
+				maxWordIndex = i;
+			}
+		}
+		longestWord = '<span class="longest">' + ChachiTweets.splitTweet[maxWordIndex] + '</span>';
+		ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(ChachiTweets.splitTweet[maxWordIndex], longestWord);
+		$tweetContainer.html(ChachiTweets.tweetContent);
+		ChachiTweets.longestSet = true;
 	}
 };
 
