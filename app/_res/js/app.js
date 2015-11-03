@@ -4,9 +4,9 @@ ChachiTweets.linksAdded = false;
 ChachiTweets.longestSet = false;
 ChachiTweets.stealthMode = true;
 
-var $bodyEl, $chachi, $tweetBubble, $tweetContainer;
+var $body, $chachi, $tweetBubble, $tweetContainer;
 
-$bodyEl = $("body");
+$body = $("body");
 $chachi = $("#chachi");
 $tweetBubble = $("#tweet-bubble");
 $tweetContainer = $("#tweet");
@@ -14,12 +14,13 @@ $tweetContainer = $("#tweet");
 ChachiTweets.init = function() {
 
 	if (ChachiTweets.stealthMode) {
-		$bodyEl.addClass('stealth');
+		$body.addClass('stealth');
 	}
 
 	ChachiTweets.getTweet();
-	ChachiTweets.hideURLbar();
-	ChachiTweets.updateTweet();
+	ChachiTweets.layout();
+	//ChachiTweets.hideURLbar();
+	//ChachiTweets.updateTweet();
 
 };
 
@@ -34,8 +35,6 @@ ChachiTweets.getTweet = function() {
 					ChachiTweets.tweetContent = ChachiTweets.rawTweet;
 					ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ");
 					ChachiTweets.tweetCharCount = ChachiTweets.tweetContent.length;
-
-					ChachiTweets.layout();
 				}
 			} else {
 				console.log('error: ' + errors);
@@ -59,10 +58,19 @@ ChachiTweets.updateTweet = function() {
 ChachiTweets.layout = function() {
 
 	var bodyHeight, bodyWidth, bodyAspectRatio;
-	bodyHeight = $bodyEl.height();
-	bodyWidth = $bodyEl.width();
+	bodyHeight = $body.height();
+	bodyWidth = $body.width();
 	bodyAspectRatio = bodyHeight / bodyWidth;
+	
+	if (bodyAspectRatio > 1) {
+		$body.addClass('portrait');
+		$body.removeClass('landscape');
+	} else {
+		$body.addClass('landscape');
+		$body.removeClass('portrait');
+	}
 
+/*
 	if (bodyAspectRatio < .625) {
 		if (bodyHeight > 200) {
 			$chachi.height(bodyHeight * .95);
@@ -74,11 +82,13 @@ ChachiTweets.layout = function() {
 	} else {
 		$chachi.removeAttr('style');
 	}
+*/
 
 	//ChachiTweets.setFontSize();
 
-	$tweetContainer.html(ChachiTweets.tweetContent);
+	//$tweetContainer.html(ChachiTweets.tweetContent);
 
+/*
 	$tweetBubble.textfill({
 		maxFontPixel: 0,
 		success: function() {
@@ -88,10 +98,11 @@ ChachiTweets.layout = function() {
 			console.log("fail")
 		}
 	});
+*/
 
-	if (!ChachiTweets.linksAdded) {
-		ChachiTweets.addLinks();
-	}
+	//if (!ChachiTweets.linksAdded) {
+	//	ChachiTweets.addLinks();
+	//}
 };
 
 ChachiTweets.setFontSize = function() {
