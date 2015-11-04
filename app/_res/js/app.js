@@ -1,6 +1,6 @@
 var ChachiTweets = ChachiTweets || {};
 
-ChachiTweets.stealthMode = true;
+ChachiTweets.stealthMode = false;
 
 var $body, $chachi, $tweetBubble, $tweet;
 
