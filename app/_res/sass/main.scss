@@ -156,6 +156,7 @@ html {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -169,7 +170,14 @@ body {
     background-color: #999;
     #chachi {
       background-image: url(../img/bg-stealth-1760x1100.png);
-    }  }
+    }
+    #tweet-container {
+      background-color: rgba(127,127,126,.5);
+    }
+    #tweet {
+      background-color: magenta;
+    }
+  }
 }
 
 #chachi {
@@ -179,9 +187,11 @@ body {
   bottom: 0;
   left: 0;
   display: inline-block;
-  width: 100%;
+  width: 95%;
   min-height: 180px;
   min-width: 320px;
+  margin: 0 5% 0 0;
+  @include box-sizing(border-box);
   &:after {
     padding-top: 62.5%;
     display: block;
@@ -197,19 +207,16 @@ body {
   width: 50%;
   max-height: 1100px;
   max-width: 1760px;
-  padding: 0 5%;
+  padding: 6%;
   @include flex();
   @include flex-align-items(center);
   @include box-sizing(border-box);
 }
 
 #tweet {
-  display: inline-block;
   color: #444;
-  line-height: 1.1em;
   text-align: center;
   margin: 0 auto;
-  // padding: 0 16%;
   width: 100%;
   // transition: font-size 1s;
   @include box-sizing(border-box);
