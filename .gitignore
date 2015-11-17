@@ -5,6 +5,10 @@
 *node_modules/
 *dist/index.html
 *dist/_res/**
+*dist/*.php
+*dist/*.ico
+*dist/*.png
+*dist/robots.txt
 
 .DS_Store
 .DS_Store?
