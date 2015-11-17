@@ -66,6 +66,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-targethtml');
 
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['watch', 'target:dev']);
-    grunt.registerTask('prod', ['watch', 'target:prod']);
+    grunt.registerTask('dev', ['sass', 'targethtml:dev']);
+    grunt.registerTask('prod', ['sass', 'targethtml:prod']);
 };
