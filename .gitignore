@@ -2,8 +2,9 @@
 *.map
 *.css
 
-app/_res/js/libs/*/
 *node_modules/
+*dist/index.html
+*dist/_res/**
 
 .DS_Store
 .DS_Store?
