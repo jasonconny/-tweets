@@ -1,6 +1,7 @@
 var ChachiTweets = ChachiTweets || {};
 
 ChachiTweets.stealthMode = false;
+ChachiTweets.verbose = true;
 
 var $body, $chachi, $tweetBubble, $tweet;
 
@@ -44,25 +45,33 @@ ChachiTweets.getTweet = function() {
 
 ChachiTweets.formatTweet = function() {
 	ChachiTweets.tweetContent = ChachiTweets.rawTweet;
-	ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ");
+	ChachiTweets.splitTweet = ChachiTweets.tweetContent.split(" ")
 
-	if (ChachiTweets.tweetContent.includes("http") || ChachiTweets.tweetContent.includes("#") || ChachiTweets.tweetContent.includes("@")) {
+	if (ChachiTweets.tweetContent.includes("http") || ChachiTweets.tweetContent.includes("#") || ChachiTweets.tweetContent.includes("@") || ChachiTweets.tweetContent.includes("RT")) {
+
+		if (!ChachiTweets.verbose) {
+			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(3);
+			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(ChachiTweets.tweetContent.indexOf(" ")+1);
+			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(0, ChachiTweets.tweetContent.indexOf(" http"));
+		}
+
 		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
-			var el = ChachiTweets.splitTweet[i];
-			if (el.indexOf('http') === 0) {
-				var linkedURL = '<a href="' + el + '" target="_blank">' + el + '</a>';
-				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedURL);
-			} else if (el.indexOf('#') === 0) {
-				var linkedHashTag = '<a href="https://twitter.com/search?q=%23' + el.substr(1) + '&src=hash" target="_blank">' + el + '</a>';
-				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedHashTag);
-			} else if (el.indexOf('@') === 0) {
-				var linkedUserName = '<a href="https://twitter.com/' + el.substr(1) + '" target="_blank">' + el + '</a>';
-				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(el, linkedUserName);
+			var thisWord = ChachiTweets.splitTweet[i];
+			if (thisWord.startsWith('http')) {
+				var linkedURL = '<a href="' + thisWord + '" target="_blank">' + thisWord + '</a>';
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(thisWord, linkedURL);
+			} else if (thisWord.startsWith('#')) {
+				var linkedHashTag = '<a href="https://twitter.com/search?q=%23' + thisWord.substr(1) + '&src=hash" target="_blank">' + thisWord + '</a>';
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(thisWord, linkedHashTag);
+			} else if (thisWord.startsWith('@')) {
+				var linkedUserName = '<a href="https://twitter.com/' + thisWord.substr(1) + '" target="_blank">' + thisWord + '</a>';
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(thisWord, linkedUserName);
 			}
 		}
+
 	}
 
-	$tweet.html(ChachiTweets.tweetContent);
+	$tweet.html("<span>" + ChachiTweets.tweetContent + "</span>");
 
 	ChachiTweets.setFontSize();
 };
@@ -106,9 +115,8 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	$tweetBubble.textfill({
-		maxFontPixels: 150,
-		explicitWidth: $body.width() // no idea why passing this in stops it from failing
+	$tweet.textfill({
+		maxFontPixels: 150
 	});
 };
 
