@@ -243,7 +243,6 @@ body {
   @include box-sizing(border-box);
   a {
     text-decoration: none;
-    white-space: nowrap;
     &:link,
     &:visited {
       color: $linkColor;
