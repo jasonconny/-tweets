@@ -1,7 +1,7 @@
 var ChachiTweets = ChachiTweets || {};
 
 ChachiTweets.stealthMode = false;
-ChachiTweets.verbose = true;
+ChachiTweets.verbose = false;
 
 var $body, $chachi, $tweetBubble, $tweet;
 
@@ -50,11 +50,23 @@ ChachiTweets.formatTweet = function() {
 	if (ChachiTweets.tweetContent.includes("http") || ChachiTweets.tweetContent.includes("#") || ChachiTweets.tweetContent.includes("@") || ChachiTweets.tweetContent.includes("RT")) {
 
 		if (!ChachiTweets.verbose) {
-			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(3);
-			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(ChachiTweets.tweetContent.indexOf(" ")+1);
-			ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(0, ChachiTweets.tweetContent.indexOf(" http"));
+
+			// remove re-tweet attribution
+			if(ChachiTweets.tweetContent.indexOf('RT ') === 0) {
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(3);
+				ChachiTweets.tweetContent = ChachiTweets.tweetContent.substring(ChachiTweets.tweetContent.indexOf(" ")+1);
+			}
+
+			// remove embedded links
+			for (i=0; i < ChachiTweets.splitTweet.length; i++) {
+				var thisWord = ChachiTweets.splitTweet[i];
+				if (thisWord.startsWith('http')) {
+					ChachiTweets.tweetContent = ChachiTweets.tweetContent.replace(thisWord, '');
+				}
+			}
 		}
 
+		// add <a>'s to embedded links, usernames and hash tags
 		for (i=0; i < ChachiTweets.splitTweet.length; i++) {
 			var thisWord = ChachiTweets.splitTweet[i];
 			if (thisWord.startsWith('http')) {
