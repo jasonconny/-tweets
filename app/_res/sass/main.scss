@@ -237,7 +237,6 @@ body {
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  // transition: font-size 1s;
   @include flex();
   @include flex-align-items(center);
   @include box-sizing(border-box);
