@@ -4,17 +4,28 @@
 
 <head>
 	<meta charset="utf-8">
+	<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><![endif]-->
 	<title>Chachi Tweets</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!--(if target dev || prod)><!-->
+    <!-- FB OG meta -->
 	<meta property="og:title" content="Chachi Tweets" />
+    <meta property="og:site_name" content="Chachi Tweets"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://{{environment}}/" />
-	<meta property="og:image" content="http://{{environment}}/_res/img/chachi-facebook.jpg" />
 	<meta property="og:description" content="Words of wisdom from Fonzi's cousin Chachi Arcola." />
 	<meta property="og:locale" content="en_US" />
-	<!--<!(endif)-->
+    <meta property="og:image" content="http://{{environment}}/_res/img/chachi-facebook.jpg" />
+
+    <!-- Twitter meta -->
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Chachi Tweets"/>
+    <meta name="twitter:url" content="http:/{{environment}}/">
+    <meta name="twitter:site" content="@jasonconny"/>
+    <meta name="twitter:domain" content="ChachiTweets"/>
+    <meta name="twitter:image" content="http://{{environment}}/_res/img/chachi-twitter.jpg"/>
+    <!--<!(endif)-->
 
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
