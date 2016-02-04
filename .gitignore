@@ -1,6 +1,7 @@
 .idea/**
 *.map
 *.css
+_old
 
 *node_modules/
 *dist/index.html
