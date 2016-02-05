@@ -97,9 +97,7 @@ ChachiTweets.formatTweet = function() {
 	if (emojiRegEx.test(ChachiTweets.tweetContent)) {
 		ChachiTweets.tweetContent = styleEmoji(ChachiTweets.tweetContent);
 	}
-
-	console.log(ChachiTweets.tweetContent);
-
+	
 	$tweet.html("<span>" + ChachiTweets.tweetContent + "</span>");
 
 	ChachiTweets.setFontSize();
