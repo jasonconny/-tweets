@@ -49,7 +49,6 @@ ChachiTweets.formatTweet = function() {
 
 	function styleEmoji(str) {
 		function wrapEmoji(match) {
-			console.log(match);
 			return '<i>' + match + '</i>';
 		}
 		return str.replace(emojiRegEx, wrapEmoji);
@@ -97,7 +96,7 @@ ChachiTweets.formatTweet = function() {
 	if (emojiRegEx.test(ChachiTweets.tweetContent)) {
 		ChachiTweets.tweetContent = styleEmoji(ChachiTweets.tweetContent);
 	}
-	
+
 	$tweet.html("<span>" + ChachiTweets.tweetContent + "</span>");
 
 	ChachiTweets.setFontSize();
