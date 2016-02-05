@@ -251,9 +251,9 @@ body {
       color: $linkHover
     }
   }
-  .longest {
-    display: inline-block;
-    white-space: nowrap;
+  i {
+    font-family: serif;
+    font-style: normal;
   }
 }
 
