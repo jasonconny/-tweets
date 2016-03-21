@@ -141,8 +141,12 @@ ChachiTweets.layout = function() {
 };
 
 ChachiTweets.setFontSize = function() {
-	$tweet.fitText(1,{
-		maxFontSize: '150px'
+	$tweet.removeClass('font-sized');
+	$tweet.textfill({
+		maxFontPixels: 150,
+		complete: function(){
+				$tweet.addClass('font-sized');
+			}
 	});
 };
 
