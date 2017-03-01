@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        clean: ['./dist/*', '!./dist/.keep'],
         copy: {
             resources: {
                 expand: true,
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     "style" : "expanded",
-                    "sourcemap" : "inline",
+                    "sourceMap" : true,
                     "unixNewlines" : true,
                     "noCache" : true
                 },
@@ -75,12 +76,13 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-targethtml');
 
+    var target = grunt.option('target') || 'dev';
     grunt.registerTask('default', ['watch']);
-    grunt.registerTask('dev', ['sass', 'targethtml:dev', 'copy:misc', 'copy:resources']);
-    grunt.registerTask('prod', ['sass', 'targethtml:prod', 'copy:misc', 'copy:resources']);
+    grunt.registerTask('build', ['sass', 'clean', 'targethtml:' + target, 'copy:misc', 'copy:resources']);
 };
