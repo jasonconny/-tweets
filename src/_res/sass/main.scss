@@ -169,7 +169,7 @@ body {
   &.stealth {
     background-color: #999;
     #chachi {
-      background-image: url(../img/bg-stealth-1760x1100.png);
+      background-image: url(../img/stealth-1760x1100.png);
     }
     #tweet-container {
       background-color: rgba(127,127,126,.5);
@@ -195,7 +195,7 @@ body {
     content: '';
   }
   .landscape & {
-    background: transparent url(../img/bg-1760x1100.png) bottom right no-repeat;
+    background: transparent url(../img/chachi-1760x1100.png) bottom right no-repeat;
     background-size: contain;
     max-height: 1100px;
     max-width: 1760px;
@@ -204,7 +204,7 @@ body {
     }
   }
   .portrait & {
-    background: transparent url(../img/bg-1320x1375.png) bottom right no-repeat;
+    background: transparent url(../img/chachi-1320x1375.png) bottom right no-repeat;
     background-size: contain;
     max-height: 1320px;
     max-width: 1375px;
