@@ -4,13 +4,13 @@ module.exports = function(grunt) {
         copy: {
             resources: {
                 expand: true,
-                cwd: './app/_res/',
+                cwd: './src/_res/',
                 src: ['**/*', '!**/sass/**'],
                 dest: './dist/_res/'
             },
             misc: {
                 expand: true,
-                cwd: './app/',
+                cwd: './src/',
                 src: ['*.php', '*.ico', '*.png', 'robots.txt'],
                 dest: './dist/'
             }
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                     "noCache" : true
                 },
                 files: {
-                    'app/_res/css/main.css': 'app/_res/sass/main.scss'
+                    'app/_res/css/main.css': 'src/_res/sass/main.scss'
                 }
             }
         },
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    "./dist/index.html" : "./app/index.html"
+                    "./dist/index.html" : "./src/index.html"
                 }
             },
             prod: {
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
                     }
                 },
                 files: {
-                    "./dist/index.html" : "./app/index.html"
+                    "./dist/index.html" : "./src/index.html"
                 }
             }
         }
