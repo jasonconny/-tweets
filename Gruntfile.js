@@ -1,5 +1,19 @@
 module.exports = function(grunt) {
-    grunt.initConfig({
+	var target = grunt.option('target') || 'dev';
+	var character = grunt.option('character');
+	var characterLower = character.toLowerCase();
+	var description;
+
+	switch (character) {
+        case 'Chachi':
+            description = 'Words of wisdom from Fonzie\'s cousin Chachi Arcola.';
+            break;
+        default:
+            description = 'blah';
+            break;
+    }
+
+	grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: ['./dist/*', '!./dist/.keep'],
         copy: {
@@ -54,8 +68,11 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     curlyTags: {
-                        environment: 'dev.chachitweets.com',
-                        gaid: 'UA-2569982-8'
+                        environment: 'dev.' + characterLower + 'tweets.com',
+                        gaid: 'UA-2569982-8',
+                        character: character,
+                        characterLower: characterLower,
+                        description: description
                     }
                 },
                 files: {
@@ -82,7 +99,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-targethtml');
 
-    var target = grunt.option('target') || 'dev';
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['sass', 'clean', 'targethtml:' + target, 'copy:misc', 'copy:resources']);
 };
