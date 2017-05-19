@@ -8,7 +8,7 @@
 	<title>Chachi Tweets</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--(if target dev || prod)><!-->
+	<!--(if target dev || stage || prod)><!-->
     <!-- FB OG meta -->
 	<meta property="og:title" content="{{character}} Tweets" />
     <meta property="og:site_name" content="{{character}} Tweets"/>
@@ -16,7 +16,7 @@
 	<meta property="og:url" content="http://{{environment}}/" />
 	<meta property="og:description" content="{{description}}" />
 	<meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="http://{{environment}}/_res/img/{{characterLower}}-facebook.jpg" />
+    <meta property="og:image" content="http://{{environment}}/_res/img/{{characterLower}}/facebook.jpg" />
 
     <!-- Twitter meta -->
     <meta name="twitter:card" content="summary"/>
@@ -24,18 +24,19 @@
     <meta name="twitter:url" content="http:/{{environment}}/">
     <meta name="twitter:site" content="@jasonconny"/>
     <meta name="twitter:domain" content="{{character}}Tweets"/>
-    <meta name="twitter:image" content="http://{{environment}}/_res/img/{{characterLower}}-twitter.jpg"/>
-    <!--<!(endif)-->
+    <meta name="twitter:image" content="http://{{environment}}/_res/img/{{characterLower}}/twitter.jpg"/>
 
-	<link rel="shortcut icon" href="/favicon.ico">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="shortcut icon" href="/{{characterLower}}-favicon.ico">
+	<link rel="apple-touch-icon" href="/{{characterLower}}-apple-touch-icon.png">
 
-	<link rel="stylesheet" href="_res/css/main.css">
+	<link rel="stylesheet" href="_res/css/{{characterLower}}.css">
+	<!--<!(endif)-->
 
 </head>
+
 <body>
 
-<!--(if target dev || prod)><!-->
+<!--(if target dev || stage || prod)><!-->
 	<div id="{{characterLower}}">
 		<div id="tweet-bubble">
 			<div id="tweet"></div>
@@ -47,7 +48,7 @@
 	<script src="_res/js/jquery.textfill.min.js"></script>
 	<script src="_res/js/app.js"></script>
 
-	<!--(if target dev || prod)><!-->
+	<!--(if target stage || prod)><!-->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
