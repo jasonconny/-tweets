@@ -1,3 +1,11 @@
 # [Chachi Tweets](http://www.chachitweets.com)
 
-Words of wisdom from Fonzie's cousin Chachi Arcola.
+All the *Tweets sites.
+
+## Build
+
+`grunt build --target=dev --character=Chachi`
+
+target can equal dev, stage or prod.
+
+character can equal Chachi or Fonzie.
