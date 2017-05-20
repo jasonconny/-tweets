@@ -5,7 +5,7 @@ StarTweets.verbose = false;
 var $body, $character, $tweetBubble, $tweet;
 
 $body = $("body");
-$character = $("#chachi, #fonzie");
+$character = $(".chachi, .fonzie");
 $tweetBubble = $("#tweet-bubble");
 $tweet = $("#tweet");
 
@@ -119,7 +119,7 @@ StarTweets.layout = function() {
 		$body.removeClass('portrait');
 	}
 
-	if (bodyAspectRatio < .625) {
+	if (bodyAspectRatio < .625 && $character.hasClass('chachi')) {
 		if (bodyHeight > 200) {
 			var chachiHeight = bodyHeight * .95;
 			$character.height(chachiHeight);
@@ -128,10 +128,18 @@ StarTweets.layout = function() {
 			$character.height(200);
 			$character.width(320);
 		}
+	} else if (bodyAspectRatio < .8 && $character.hasClass('fonzie')) {
+		if (bodyHeight > 200) {
+			var fonzieHeight = bodyHeight * .95;
+			$character.height(fonzieHeight);
+			$character.width(fonzieHeight * 1.25);
+		} else {
+			$character.height(200);
+			$character.width(320);
+		}
 	} else {
 		$character.removeAttr('style');
 	}
-
 
 };
 
