@@ -13,6 +13,10 @@ module.exports = function(grunt) {
 			description = 'Come on Yolanda what\'s Fonzie Like?';
 			gaid = 'UA-2569982-10';
 			break;
+		case 'Richie':
+			description = '';
+			gaid = '';
+			break;
 		default:
 			description = 'blah';
 			gaid = 'UA-XXXXXXX-XX';
@@ -52,7 +56,8 @@ module.exports = function(grunt) {
 				},
 				files: {
 					'./dist/_res/css/chachi.css' : './src/_res/sass/chachi.scss',
-					'./dist/_res/css/fonzie.css' : './src/_res/sass/fonzie.scss'
+					'./dist/_res/css/fonzie.css' : './src/_res/sass/fonzie.scss',
+					'./dist/_res/css/richie.css' : './src/_res/sass/richie.scss'
 				}
 			}
 		},

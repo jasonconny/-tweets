@@ -11,14 +11,14 @@ $consumer_secret = 'rOB8HOdt03jVEKtGzwVINCMzsHRNVXD5fx0PFRHhc4';
 //$user_id = '59233414';
 //$screen_name = 'jasonconny';
 
-//$user_id = '125481462';
-//$screen_name = 'RealRonHoward';
+$user_id = '125481462';
+$screen_name = 'RealRonHoward';
 
 //$user_id = '248917209';
 //$screen_name = 'hwinkler4real';
 
-$user_id = '82447359';
-$screen_name = 'scottbaio';
+//$user_id = '82447359';
+//$screen_name = 'scottbaio';
 
 $count = 1;
 

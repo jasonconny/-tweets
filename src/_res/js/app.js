@@ -5,7 +5,7 @@ StarTweets.verbose = false;
 var $body, $character, $tweetBubble, $tweet;
 
 $body = $("body");
-$character = $(".chachi, .fonzie");
+$character = $(".character");
 $tweetBubble = $("#tweet-bubble");
 $tweet = $("#tweet");
 
@@ -133,6 +133,15 @@ StarTweets.layout = function() {
 			var fonzieHeight = bodyHeight * .95;
 			$character.height(fonzieHeight);
 			$character.width(fonzieHeight * 1.25);
+		} else {
+			$character.height(200);
+			$character.width(320);
+		}
+	} else if (bodyAspectRatio < .67 && $character.hasClass('richie')) {
+		if (bodyHeight > 200) {
+			var richieHeight = bodyHeight * .95;
+			$character.height(richieHeight);
+			$character.width(richieHeight * 1.5);
 		} else {
 			$character.height(200);
 			$character.width(320);
