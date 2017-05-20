@@ -2,49 +2,20 @@
 
 @import "fonts";
 
-//* VARIABLES
+@import "global";
+
+//* COLOR VARIABLES
 $bgColor: #3967b2;
 $linkColor: #8c8fce;
 $linkHover: #7376bf;
-$fontStack: 'CooperLtBTBoldItalic', Georgia, Times, 'Times New Roman', serif;
-$masterPrefix: -webkit- -ms- -moz- -o- null;
-$basicPrefix: -webkit- -moz- null;
-
-
-* {
-  box-sizing: border-box;
-}
-
-body,
-html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
 
 body {
-  font-size: 62.5%;
-  position: relative;
-  margin: 0;
-  padding: 0;
   background-color: $bgColor;
-  font-family: $fontStack;
 }
 
 .fonzie {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: inline-block;
-  width: 83%;
-  min-height: 180px;
-  min-width: 320px;
   margin: 0 17% 0 0;
-  &:after {
-    display: block;
-    content: '';
-  }
+  width: 83%;
   .landscape & {
     background: transparent url(../img/fonzie/1500x1200.png) bottom left no-repeat;
     background-size: contain;
@@ -66,9 +37,6 @@ body {
 }
 
 #tweet-bubble {
-  position: absolute;
-  top: 0;
-  right: 0;
   .landscape & {
     padding: 7%;
     height: 45%;
@@ -82,17 +50,7 @@ body {
 }
 
 #tweet {
-  color: #444;
-  text-align: center;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  &.font-sized {
-    align-items: center;
-    display: flex;
-  }
   a {
-    text-decoration: none;
     &:link,
     &:visited {
       color: $linkColor;
@@ -101,9 +59,5 @@ body {
     &:active {
       color: $linkHover
     }
-  }
-  i {
-    font-family: serif;
-    font-style: normal;
   }
 }
