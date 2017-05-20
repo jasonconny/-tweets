@@ -1,17 +1,17 @@
 {
-  "name": "chachitweets",
-  "version": "1.2.0",
-  "description": "Words of wisdom from Fonzie's cousin Chachi Arcola",
+  "name": "*Tweets",
+  "version": "1.4.0",
+  "description": "All the *Tweets sites",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonconny/chachitweets.git"
+    "url": "https://github.com/jasonconny/-tweets.git"
   },
   "author": "Jason Conny",
   "bugs": {
-    "url": "https://github.com/jasonconny/chachitweets/issues"
+    "url": "https://github.com/jasonconny/-tweets/issues"
   },
-  "homepage": "https://github.com/jasonconny/chachitweets",
+  "homepage": "https://github.com/jasonconny/-tweets",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
