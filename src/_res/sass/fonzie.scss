@@ -1,0 +1,63 @@
+@import "normalize";
+
+@import "fonts";
+
+@import "global";
+
+//* COLOR VARIABLES
+$bgColor: #3967b2;
+$linkColor: #8c8fce;
+$linkHover: #7376bf;
+
+body {
+  background-color: $bgColor;
+}
+
+.fonzie {
+  margin: 0 17% 0 0;
+  width: 83%;
+  .landscape & {
+    background: transparent url(../img/fonzie/1500x1200.png) bottom left no-repeat;
+    background-size: contain;
+    max-height: 1200px;
+    max-width: 1500px;
+    &:after {
+      padding-top: 80%;
+    }
+  }
+  .portrait & {
+    background: transparent url(../img/fonzie/1320x1575.png) bottom left no-repeat;
+    background-size: contain;
+    max-height: 1320px;
+    max-width: 1575px;
+    &:after {
+      padding-top: 119%;
+    }
+  }
+}
+
+#tweet-bubble {
+  .landscape & {
+    padding: 7%;
+    height: 45%;
+    width: 59%;
+  }
+  .portrait & {
+    padding: 8%;
+    height: 35%;
+    width: 66.66666666%;
+  }
+}
+
+#tweet {
+  a {
+    &:link,
+    &:visited {
+      color: $linkColor;
+    }
+    &:hover,
+    &:active {
+      color: $linkHover
+    }
+  }
+}

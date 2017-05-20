@@ -8,44 +8,47 @@
 	<title>Chachi Tweets</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--(if target dev || prod)><!-->
+	<!--(if target dev || stage || prod)><!-->
     <!-- FB OG meta -->
-	<meta property="og:title" content="Chachi Tweets" />
-    <meta property="og:site_name" content="Chachi Tweets"/>
+	<meta property="og:title" content="{{character}} Tweets" />
+    <meta property="og:site_name" content="{{character}} Tweets"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://{{environment}}/" />
-	<meta property="og:description" content="Words of wisdom from Fonzie's cousin Chachi Arcola." />
+	<meta property="og:description" content="{{description}}" />
 	<meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="http://{{environment}}/_res/img/chachi-facebook.jpg" />
+    <meta property="og:image" content="http://{{environment}}/_res/img/{{characterLower}}/facebook.jpg" />
 
     <!-- Twitter meta -->
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Chachi Tweets"/>
+    <meta name="twitter:title" content="{{character}} Tweets"/>
     <meta name="twitter:url" content="http:/{{environment}}/">
     <meta name="twitter:site" content="@jasonconny"/>
-    <meta name="twitter:domain" content="ChachiTweets"/>
-    <meta name="twitter:image" content="http://{{environment}}/_res/img/chachi-twitter.jpg"/>
-    <!--<!(endif)-->
+    <meta name="twitter:domain" content="{{character}}Tweets"/>
+    <meta name="twitter:image" content="http://{{environment}}/_res/img/{{characterLower}}/twitter.jpg"/>
 
-	<link rel="shortcut icon" href="/favicon.ico">
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<link rel="shortcut icon" href="/{{characterLower}}-favicon.ico">
+	<link rel="apple-touch-icon" href="/{{characterLower}}-apple-touch-icon.png">
 
-	<link rel="stylesheet" href="_res/css/main.css">
+	<link rel="stylesheet" href="_res/css/{{characterLower}}.css">
+	<!--<!(endif)-->
 
 </head>
+
 <body>
 
-	<div id="chachi">
+<!--(if target dev || stage || prod)><!-->
+	<div class="character {{characterLower}}">
 		<div id="tweet-bubble">
 			<div id="tweet"></div>
 	 	</div>
 	</div>
+<!--<!(endif)-->
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="_res/js/jquery.textfill.min.js"></script>
 	<script src="_res/js/app.js"></script>
 
-	<!--(if target dev || prod)><!-->
+	<!--(if target prod)><!-->
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -57,7 +60,6 @@
 
 	</script>
 	<!--<!(endif)-->
-
 
 </body>
 </html>

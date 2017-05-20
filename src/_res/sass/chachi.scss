@@ -1,0 +1,63 @@
+@import "normalize";
+
+@import "fonts";
+
+@import "global";
+
+//* COLOR VARIABLES
+$bgColor: #A63726;
+$linkColor: #f37d1e;
+$linkHover: #e36500;
+
+body {
+  background-color: $bgColor;
+}
+
+.chachi {
+  margin: 0 5% 0 0;
+  width: 95%;
+  .landscape & {
+    background: transparent url(../img/chachi/1760x1100.png) bottom right no-repeat;
+    background-size: contain;
+    max-height: 1100px;
+    max-width: 1760px;
+    &:after {
+      padding-top: 62.5%;
+    }
+  }
+  .portrait & {
+    background: transparent url(../img/chachi/1320x1375.png) bottom right no-repeat;
+    background-size: contain;
+    max-height: 1320px;
+    max-width: 1375px;
+    &:after {
+      padding-top: 104%;
+    }
+  }
+}
+
+#tweet-bubble {
+  .landscape & {
+    padding: 6%;
+    height: 50%;
+    width: 50%;
+  }
+  .portrait & {
+    padding: 8%;
+    height: 40%;
+    width: 66.66666666%;
+  }
+}
+
+#tweet {
+  a {
+    &:link,
+    &:visited {
+      color: $linkColor;
+    }
+    &:hover,
+    &:active {
+      color: $linkHover
+    }
+  }
+}
