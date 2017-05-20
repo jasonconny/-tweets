@@ -14,8 +14,8 @@ module.exports = function(grunt) {
 			gaid = 'UA-2569982-10';
 			break;
 		case 'Richie':
-			description = '';
-			gaid = '';
+			description = 'Yowsah! Yowsah! Yowsah!';
+			gaid = 'UA-2569982-11';
 			break;
 		default:
 			description = 'blah';
