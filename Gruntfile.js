@@ -2,17 +2,20 @@ module.exports = function(grunt) {
 	var target = grunt.option('target') || 'dev';
 	var character = grunt.option('character');
 	var characterLower = character.toLowerCase();
-	var description;
+	var description, gaid;
 
 	switch (character) {
 		case 'Chachi':
 			description = 'Words of wisdom from Fonzie\'s cousin Chachi Arcola.';
+			gaid = 'UA-2569982-6';
 			break;
 		case 'Fonzie':
 			description = 'Come on Yolanda what\'s Fonzie Like?';
+			gaid = 'UA-2569982-10';
 			break;
 		default:
 			description = 'blah';
+			gaid = 'UA-XXXXXXX-XX';
 			break;
 	}
 
@@ -99,8 +102,7 @@ module.exports = function(grunt) {
 						character: character,
 						characterLower: characterLower,
 						description: description,
-						environment: 'stage.' + characterLower + 'tweets.com',
-						gaid: 'UA-2569982-8'
+						environment: 'stage.' + characterLower + 'tweets.com'
 					}
 				},
 				files: {
@@ -114,7 +116,8 @@ module.exports = function(grunt) {
 						characterLower: characterLower,
 						description: description,
 						environment: 'www.' + characterLower + 'tweets.com',
-						gaid: 'UA-2569982-6'					}
+						gaid: gaid
+					}
 				},
 				files: {
 					'./dist/index.html' : './src/index.html'
